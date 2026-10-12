@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     runtime_secret_arn: str = ""
     max_upload_mb: int = 10
     max_image_pixels: int = 16_000_000
-    allowed_hosts: str = "127.0.0.1,localhost,testserver"
+    allowed_hosts: str = "127.0.0.1,localhost,testserver,rion-resources-intelligance-and.onrender.com"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
