@@ -19,6 +19,7 @@ from .schemas import ClassificationResponse, Detection
 from .settings import settings
 
 logger = logging.getLogger(__name__)
+import os
 Image.MAX_IMAGE_PIXELS = settings.max_image_pixels
 engine = YoloInference(
     settings.model_path,
@@ -32,6 +33,16 @@ engine = YoloInference(
     detector_threshold=settings.detector_threshold,
     classifier_fallback_threshold=settings.classifier_fallback_threshold,
 )
+
+logger.warning(
+    "RION MODEL DIAGNOSTICS | cwd=%s | detector_path=%s | detector_exists=%s | classifier_path=%s | classifier_exists=%s",
+    os.getcwd(),
+    engine.model_path.resolve(),
+    engine.model_path.is_file(),
+    engine.classifier_path.resolve() if engine.classifier_path else None,
+    engine.classifier_path.is_file() if engine.classifier_path else False,
+)
+
 app = FastAPI(
     title="RION — Resource Intelligence & Optimization Network API",
     description="Image-based material estimates with explicitly illustrative route guidance.",
