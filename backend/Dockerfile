@@ -11,7 +11,7 @@ RUN python -m pip install --no-cache-dir --upgrade pip \
     && python -m pip install --no-cache-dir -r /app/requirements.txt
 
 COPY backend/app /app/app
-COPY model/ /app/model/
+COPY models/ /app/models/
 COPY scripts/seed_policy_db.py /app/scripts/seed_policy_db.py
 COPY infra/aws/db/schema.sql /app/infra/aws/db/schema.sql
 EXPOSE 8000
